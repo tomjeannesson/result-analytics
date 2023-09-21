@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/result-analyzer
+      url: https://pypi.org/project/result-analytics/
     permissions:
-      contents: read
       id-token: write
 
     steps:
