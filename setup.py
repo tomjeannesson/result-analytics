@@ -12,7 +12,7 @@ setup(
     author="Mateo & Tom Jeannesson",
     author_email="tomjeannesson@gmail.com",
     url="https://github.com/tomjeannesson/result-analytics",
-    download_url="https://github.com/tomjeannesson/project-results/archive/refs/tags/v{{VERSION}}.tar.gz",
+    download_url="https://github.com/tomjeannesson/result-analytics/archive/refs/tags/v{{VERSION}}.tar.gz",
     keywords=["Sport", "Ski", "Result", "Analytics", "Moguls"],
     install_requires=["PyPDF2==3.0.1", "pandas==2.1.1"],
     classifiers=[
