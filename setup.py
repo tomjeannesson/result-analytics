@@ -11,8 +11,8 @@ setup(
     long_description="A simple project to extract data from PDFs and analyse them.",
     author="Mateo & Tom Jeannesson",
     author_email="tomjeannesson@gmail.com",
-    url="https://github.com/Madmat28/project-results",
-    download_url="https://github.com/Madmat28/project-results/archive/refs/tags/v{{VERSION}}.tar.gz",
+    url="https://github.com/tomjeannesson/result-analytics",
+    download_url="https://github.com/tomjeannesson/project-results/archive/refs/tags/v{{VERSION}}.tar.gz",
     keywords=["Sport", "Ski", "Result", "Analytics", "Moguls"],
     install_requires=["PyPDF2==3.0.1", "pandas==2.1.1"],
     classifiers=[
