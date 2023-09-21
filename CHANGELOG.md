@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/tomjeannesson/result-analytics/compare/v1.0.7...v1.0.8) (2023-09-21)
+
+
+### Bug Fixes
+
+* **ci:** download_url ([9e184af](https://github.com/tomjeannesson/result-analytics/commit/9e184af7d8cd47c63831073fd94958f5d57f1104))
+
 ## [1.0.7](https://github.com/tomjeannesson/result-analytics/compare/v1.0.6...v1.0.7) (2023-09-21)
 
 
