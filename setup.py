@@ -14,7 +14,7 @@ setup(
     url="https://github.com/Madmat28/project-results",
     download_url="https://github.com/Madmat28/project-results/archive/refs/tags/v{{VERSION}}.tar.gz",
     keywords=["Sport", "Ski", "Result", "Analytics", "Moguls"],
-    install_requires=["PyPDF2==3.0.1", "pandas==2.0.3"],
+    install_requires=["PyPDF2==3.0.1", "pandas==2.1.1"],
     classifiers=[
         "Development Status :: 4 - Beta",  # "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
         "Intended Audience :: Developers",
