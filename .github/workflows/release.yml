@@ -21,11 +21,11 @@ jobs:
 
       - name: Install semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_GITHUB_TOKEN }}
         run: |
           npm install --save-dev semantic-release
 
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_GITHUB_TOKEN }}
         run: npx semantic-release
