@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/tomjeannesson/result-analytics/compare/v1.0.5...v1.0.6) (2023-09-21)
+
+
+### Bug Fixes
+
+* **ci:** pypi ([17bbf27](https://github.com/tomjeannesson/result-analytics/commit/17bbf27565946bf7105f2482220574954f2d365c))
+
 ## [1.0.5](https://github.com/tomjeannesson/result-analytics/compare/v1.0.4...v1.0.5) (2023-09-21)
 
 
