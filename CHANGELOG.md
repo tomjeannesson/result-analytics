@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/tomjeannesson/result-analytics/compare/v1.1.0...v1.2.0) (2023-09-22)
+
+
+### Features
+
+* **analytics:** refactored for ease of use ([e854745](https://github.com/tomjeannesson/result-analytics/commit/e8547450d4034b07786a03dbfc3265251e85530e))
+
 # [1.1.0](https://github.com/tomjeannesson/result-analytics/compare/v1.0.8...v1.1.0) (2023-09-21)
 
 
