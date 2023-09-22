@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/tomjeannesson/result-analytics/compare/v1.0.8...v1.1.0) (2023-09-21)
+
+
+### Features
+
+* **src:** added all files ([ca2e8bf](https://github.com/tomjeannesson/result-analytics/commit/ca2e8bf1967b468fe67b503eb2d1bf1c09eb3f41))
+
 ## [1.0.8](https://github.com/tomjeannesson/result-analytics/compare/v1.0.7...v1.0.8) (2023-09-21)
 
 
