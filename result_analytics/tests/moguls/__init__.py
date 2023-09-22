@@ -1,0 +1,2 @@
+from .test_mogul_athlete_result import TestMogulAthleteResult
+from .test_mogul_pdf_analyser import TestMogulPdfAnalyser

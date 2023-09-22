@@ -1,4 +1,4 @@
-class AthleteResult:
+class MogulAthleteResult:
     result = ""
     bib = ""
     fis_id = ""
@@ -39,30 +39,23 @@ class AthleteResult:
         self.bib = int(self.bib)
         self.fis_id = int(self.fis_id)
         self.birth_year = int(self.birth_year)
-        if len(self.time.split(".")[1]) != 2:
-            error_msg = f"Error: Expected time to have 2 decimals, got {len(self.time.split('.')[1])}"
-            raise ValueError(error_msg)
-        self.time = float(self.time)
 
-        if len(self.time_points.split(".")[1]) != 2:
-            error_msg = f"Error: Expected time points to have 2 decimals, got {len(self.time_points.split('.')[1])}"
-            raise ValueError(error_msg)
-        self.time_points = float(self.time_points)
+        for attr in ["time", "time_points"]:
+            if len(getattr(self, attr).split(".")[1]) != 2:
+                error_msg = f"Error: Expected {attr} to have 2 decimals, got {len(getattr(self, attr).split('.')[1])}"
+                raise ValueError(error_msg)
 
-        if len(self.top_air_judge1.split(".")[1]) != 1:
-            error_msg = f"Error: Expected top_air_judge1 to have 1 decimal, got {len(self.top_air_judge1.split('.')[1])}"
-            raise ValueError(error_msg)
-        self.top_air_judge1 = float(self.top_air_judge1)
+        for attr in ["top_air_judge1", "top_air_judge2", "bottom_air_judge1", "bottom_air_judge2"]:
+            if len(getattr(self, attr).split(".")[1]) != 1:
+                error_msg = f"Error: Expected {attr} to have 1 decimal, got {len(getattr(self, attr).split('.')[1])}"
+                raise ValueError(error_msg)
+            setattr(self, attr, float(getattr(self, attr)))
 
-        if len(self.top_air_judge2.split(".")[1]) != 1:
-            error_msg = f"Error: Expected top_air_judge2 to have 1 decimal, got {len(self.top_air_judge2.split('.')[1])}"
-            raise ValueError(error_msg)
-        self.top_air_judge2 = float(self.top_air_judge2)
-
-        if len(self.top_air_coefficient.split(".")[1]) not in [2, 3]:
-            error_msg = f"Error: Expected top_air_coefficient to have 2 or 3 decimals, got {len(self.top_air_coefficient.split('.')[1])}"
-            raise ValueError(error_msg)
-        self.top_air_coefficient = float(self.top_air_coefficient)
+        for attr in ["top_air_coefficient", "bottom_air_coefficient"]:
+            if len(getattr(self, attr).split(".")[1]) not in [2, 3]:
+                error_msg = f"Error: Expected {attr} to have 2 or 3 decimals, got {len(getattr(self, attr).split('.')[1])}"
+                raise ValueError(error_msg)
+            setattr(self, attr, float(getattr(self, attr)))
 
     def __str__(self) -> str:
         string = "Athlete Results:\n"
@@ -99,6 +92,9 @@ class AthleteResult:
         string += f"Total Points: {self.total_points}\n"
         string += f"Race Points: {self.race_points}\n"
         return string
+
+    def to_dict(self) -> dict:
+        return {attr: getattr(self, attr) for attr in self.__dict__}
 
     def skip_until(self, string, char, pos):
         if pos not in [0, 1, 2]:
@@ -342,26 +338,3 @@ class AthleteResult:
         while len(string) > 0 and string[0] == " ":
             string = string[1:]
         return attr, string
-
-
-if __name__ == "__main__":
-    full_name = "OFFEL VILLAUCOURT de Arthur"
-    full_name = full_name.split(" ")
-    print(full_name)
-    for index, name in enumerate(reversed(full_name)):
-        if name == "":
-            continue
-        caps_letters = 0
-        for char in name:
-            if char.isupper():
-                caps_letters += 1
-            if caps_letters > 1:
-                last_sirname = index
-                break
-    last_names = full_name[: len(full_name) - last_sirname]
-    first_names = full_name[len(full_name) - last_sirname :]
-
-    first_name = " ".join(first_names)
-    last_name = " ".join(last_names)
-    print(first_name) + "|"
-    print(last_name) + "|"
