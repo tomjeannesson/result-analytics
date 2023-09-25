@@ -2,6 +2,10 @@ import unittest
 
 from result_analytics.src.moguls.pdf_analyser import MogulPdfAnalyser
 
+"""
+python3 -m unittest result_analytics.tests.moguls.test_mogul_pdf_analyser
+"""
+
 
 class TestMogulPdfAnalyser(unittest.TestCase):
     def test_self_tree(self):
@@ -17,3 +21,7 @@ class TestMogulPdfAnalyser(unittest.TestCase):
         analyser = MogulPdfAnalyser()
         for pdf_name in analyser.all_pdf:
             analyser.pdf_to_dataframe(pdf_name)
+
+    def test_analyse_specific_pdf(self):
+        analyser = MogulPdfAnalyser()
+        analyser.analayse_pdf(["M", "2023", "AH", "Q", "2023FS8787RLQ.pdf"])

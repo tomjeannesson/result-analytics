@@ -24,6 +24,7 @@ class Analytics:
             error_msg = f"Filter mode {filter_mode} not supported. Supported filter modes are exclude and include."
             raise ValueError(error_msg)
 
+        aggregated_df = {}
         all_df = []
         for pdf_name in self.analyser.all_pdf:
             valid = True
@@ -45,6 +46,12 @@ class Analytics:
                         valid = False
                         break
             if valid:
-                print(pdf_name)
-                all_df.append(self.analyser.pdf_to_dataframe(pdf_name))
-        return all_df
+                analysis = self.analyser.pdf_to_dataframe(pdf_name)
+                if dimension == "athlete":
+                    for athlete_name in analysis.index:
+                        aggregated_df[athlete_name] = [*aggregated_df.get(athlete_name, []), analysis]
+                elif dimension == "country":
+                    for country_name in analysis["country"].unique():
+                        aggregated_df[country_name] = [*aggregated_df.get(country_name, []), analysis]
+                all_df.append(analysis)
+        return aggregated_df, all_df

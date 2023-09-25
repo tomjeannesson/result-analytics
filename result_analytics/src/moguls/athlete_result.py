@@ -18,35 +18,56 @@ class MogulAthleteResult:
     bottom_air_coefficient = ""
     air_points = ""
     ski_judge1 = "NaN"
-    ski_deduction_judge1 = "NaN"
     ski_judge2 = "NaN"
-    ski_deduction_judge2 = "NaN"
     ski_judge3 = "NaN"
-    ski_deduction_judge3 = "NaN"
     ski_judge4 = "NaN"
-    ski_deduction_judge4 = "NaN"
     ski_judge5 = "NaN"
+    ski_deduction_judge1 = "NaN"
+    ski_deduction_judge2 = "NaN"
+    ski_deduction_judge3 = "NaN"
+    ski_deduction_judge4 = "NaN"
     ski_deduction_judge5 = "NaN"
     ski_total = ""
     ski_deduction_total = ""
     ski_points = ""
     total_points = ""
     race_points = "NaN"
+    tie = "NaN"
 
-    def __init__(self, string: str, qualification: bool) -> None:
-        self.analyse_string(string, qualification)
+    def __init__(self, string: str, mode: str) -> None:
+        self.analyse_string(string, mode)
         self.result = int(self.result)
         self.bib = int(self.bib)
         self.fis_id = int(self.fis_id)
         self.birth_year = int(self.birth_year)
 
-        for attr in ["time", "time_points"]:
+        for attr in ["time", "time_points", "total_points", "air_points"]:
             if len(getattr(self, attr).split(".")[1]) != 2:
                 error_msg = f"Error: Expected {attr} to have 2 decimals, got {len(getattr(self, attr).split('.')[1])}"
                 raise ValueError(error_msg)
+            setattr(self, attr, float(getattr(self, attr)))
 
-        for attr in ["top_air_judge1", "top_air_judge2", "bottom_air_judge1", "bottom_air_judge2"]:
-            if len(getattr(self, attr).split(".")[1]) != 1:
+        for attr in [
+            "top_air_judge1",
+            "top_air_judge2",
+            "bottom_air_judge1",
+            "bottom_air_judge2",
+            "ski_judge1",
+            "ski_judge2",
+            "ski_judge3",
+            "ski_judge4",
+            "ski_judge5",
+            "ski_deduction_judge1",
+            "ski_deduction_judge2",
+            "ski_deduction_judge3",
+            "ski_deduction_judge4",
+            "ski_deduction_judge5",
+            "ski_total",
+            "ski_deduction_total",
+            "ski_points",
+            "tie",
+        ]:
+            if getattr(self, attr) != "NaN" and len(getattr(self, attr).split(".")[1]) != 1:
                 error_msg = f"Error: Expected {attr} to have 1 decimal, got {len(getattr(self, attr).split('.')[1])}"
                 raise ValueError(error_msg)
             setattr(self, attr, float(getattr(self, attr)))
@@ -91,6 +112,7 @@ class MogulAthleteResult:
         string += f"Ski Points: {self.ski_points}\n"
         string += f"Total Points: {self.total_points}\n"
         string += f"Race Points: {self.race_points}\n"
+        string += f"Tie: {self.tie}\n"
         return string
 
     def to_dict(self) -> dict:
@@ -139,7 +161,7 @@ class MogulAthleteResult:
         error_msg = f"Error: Expected trick but got {string[:4]}."
         raise ValueError(error_msg)
 
-    def pdf_type(self, splited: list, qualification: bool):
+    def pdf_type(self, splited: list, mode: str):
         if "B:" in splited[0]:
             match len(splited[0].split(".")):
                 case 1:
@@ -151,16 +173,16 @@ class MogulAthleteResult:
                 case 4:
                     return 4
         elif "B:" in splited[1]:
-            if not qualification:
+            if mode != "qualification":
                 return 5
             return 6
 
         error_msg = "Error: Unknown pdf type."
         raise ValueError(error_msg)
 
-    def analyse_string(self, string: str, qualification: bool):  # noqa
+    def analyse_string(self, string: str, mode: str):
         splited = string.split("\n")
-        pdf_type = self.pdf_type(splited, qualification)
+        pdf_type = self.pdf_type(splited, mode)
         string = string.replace("\n", " ")
         string = string.replace(" Q1:", "")
         string = string.replace("PH:", "")
@@ -283,11 +305,16 @@ class MogulAthleteResult:
         self.top_air_coefficient, string = self.skip_until(string=string, char=" ", pos=0)
 
         self.time, string = self.skip_until(string=string, char=".", pos=2)
-
+        match pdf_type:
+            case 3:
+                if len(string.split(".")) == 14:
+                    self.tie, string = self.skip_until(string=string, char=".", pos=1)
+            case 4:
+                if len(string.split(".")) == 13:
+                    self.tie, string = self.skip_until(string=string, char=".", pos=1)
         match pdf_type:
             case 1 | 3 | 5 | 6:
                 self.total_points, string = self.skip_until(string=string, char=".", pos=2)
-
         self.time_points, string = self.skip_until(string=string, char=".", pos=2)
 
         match pdf_type:

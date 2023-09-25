@@ -39,10 +39,10 @@ class MogulPdfAnalyser(PdfAnalyser):
         reader = PdfReader(os.path.join(Path(__file__).parent.parent.parent, "data", "moguls", *pdf_name))
         all_athletes = {}
         for page in reader.pages:
-            all_athletes = {**all_athletes, **self.analyse_page(page)}
+            all_athletes = {**all_athletes, **self.analyse_page(page, pdf_name)}
         return all_athletes
 
-    def analyse_page(self, page: PageObject) -> dict:
+    def analyse_page(self, page: PageObject, pdf_name: list) -> dict:
         text = page.extract_text()
         qualification = "QUALIFICATION" in text
         start_of_athlete_line = []
@@ -54,9 +54,10 @@ class MogulPdfAnalyser(PdfAnalyser):
         start_of_athlete_line.append(len(text.split("\n")))
 
         all_athletes = {}
+
         for i in range(len(start_of_athlete_line) - 1):
             athlete_line = "\n".join(text.split("\n")[start_of_athlete_line[i] : start_of_athlete_line[i + 1]])
-            athlete = MogulAthleteResult(string=athlete_line, qualification=qualification)
+            athlete = MogulAthleteResult(string=athlete_line, mode="qualification" if qualification else "final")
             all_athletes[f"{athlete.last_name} {athlete.first_name}"] = athlete
         return all_athletes
 
