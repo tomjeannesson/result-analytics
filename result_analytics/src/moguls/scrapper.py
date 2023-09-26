@@ -38,7 +38,7 @@ class MogulScrapper(Scrapper):
                     all_downloads += [
                         ("MO", circuit, gender, year, place, div["href"])
                         for div in sport_div.parent.parent.parent.parent.parent.parent.parent.find_all(attrs={"name": "download"})
-                        if div["href"].endswith(("RLF.pdf", "RLQ.pdf", "RLF1.pdf", "RLF2.pdf"))
+                        if div["href"].endswith(("RLF.pdf", "RLQ.pdf", "RLF1.pdf"))
                     ]
         all_downloads = set(all_downloads)
         for download in all_downloads:
