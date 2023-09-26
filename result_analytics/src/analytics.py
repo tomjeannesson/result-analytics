@@ -2,7 +2,7 @@ from typing import Optional
 
 from result_analytics.src.moguls import MogulPdfAnalyser
 
-ANALYSERS = {"moguls": MogulPdfAnalyser}
+ANALYSERS = {"MO": MogulPdfAnalyser}
 
 
 class Analytics:

@@ -28,7 +28,7 @@ class PdfAnalyser:
 
     @staticmethod
     def pdf_tree_sport(root_data, sport):
-        if sport == "moguls":
+        if sport == "MO":
             from result_analytics.src.moguls.pdf_analyser import MogulPdfAnalyser
 
             return MogulPdfAnalyser.pdf_tree_sport(root_data=root_data)

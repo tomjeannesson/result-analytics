@@ -152,7 +152,7 @@ class MogulAthleteResult:
     def process_jump(self, string):
         if string[:4] in ["10op", "14op"]:
             return self.strip(string, 4)
-        if string[:3] in ["7op", "7oG", "bdF", "3oG", "DTS", "10o"]:
+        if string[:3] in ["7op", "7oG", "bdF", "3oG", "DTS", "10o", "14o"]:
             return self.strip(string, 3)
         if string[:2] in ["NJ", "bF", "bp", "bG", "bT", "7o", "IG", "3G", "lG", "bL", "3o", "3p", "fT"]:
             return self.strip(string, 2)

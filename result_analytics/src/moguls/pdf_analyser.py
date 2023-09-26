@@ -11,32 +11,34 @@ from result_analytics.src.pdf_analyser import PdfAnalyser
 class MogulPdfAnalyser(PdfAnalyser):
     def __init__(self) -> None:
         super().__init__()
-        self.tree = self.tree["moguls"]
+        self.tree = self.tree["MO"]
         self.all_pdf = self.all_pdf_in_tree(self.tree)
-        self.filters_shape = [None, None, None, None]
+        self.filters_shape = [None, None, None, None, None]
 
     @staticmethod
     def pdf_tree_sport(root_data: str) -> dict:
         tree = {}
-        root_data = os.path.join(root_data, "moguls")
-        for gender in os.listdir(root_data):
-            tree[gender] = {}
-            for year in os.listdir(os.path.join(root_data, gender)):
-                tree[gender][year] = {}
-                for place in os.listdir(os.path.join(root_data, gender, year)):
-                    tree[gender][year][place] = {}
-                    for run in os.listdir(os.path.join(root_data, gender, year, place)):
-                        if len(os.listdir(os.path.join(root_data, gender, year, place, run))) > 1:
-                            error_msg = "Too many runs in folder. There should be only one run per folder."
-                            raise ValueError(error_msg)
-                        if len(os.listdir(os.path.join(root_data, gender, year, place, run))) == 0:
-                            tree[gender][year][place][run] = None
-                        else:
-                            tree[gender][year][place][run] = os.listdir(os.path.join(root_data, gender, year, place, run))[0]
+        root_data = os.path.join(root_data, "MO")
+        for circuit in os.listdir(root_data):
+            tree[circuit] = {}
+            for gender in os.listdir(os.path.join(root_data, circuit)):
+                tree[circuit][gender] = {}
+                for year in os.listdir(os.path.join(root_data, circuit, gender)):
+                    tree[circuit][gender][year] = {}
+                    for place in os.listdir(os.path.join(root_data, circuit, gender, year)):
+                        tree[circuit][gender][year][place] = {}
+                        for run in os.listdir(os.path.join(root_data, circuit, gender, year, place)):
+                            if len(os.listdir(os.path.join(root_data, circuit, gender, year, place, run))) > 1:
+                                error_msg = "Too many runs in folder. There should be only one run per folder."
+                                raise ValueError(error_msg)
+                            if len(os.listdir(os.path.join(root_data, circuit, gender, year, place, run))) == 0:
+                                tree[circuit][gender][year][place][run] = None
+                            else:
+                                tree[circuit][gender][year][place][run] = os.listdir(os.path.join(root_data, circuit, gender, year, place, run))[0]
         return tree
 
     def analayse_pdf(self, pdf_name: list) -> dict:
-        reader = PdfReader(os.path.join(Path(__file__).parent.parent.parent, "data", "moguls", *pdf_name))
+        reader = PdfReader(os.path.join(Path(__file__).parent.parent.parent, "data", "MO", *pdf_name))
         all_athletes = {}
         for page in reader.pages:
             all_athletes = {**all_athletes, **self.analyse_page(page, pdf_name)}

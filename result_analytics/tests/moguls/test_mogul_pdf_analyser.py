@@ -3,14 +3,14 @@ import unittest
 from result_analytics.src.moguls.pdf_analyser import MogulPdfAnalyser
 
 """
-python3 -m unittest result_analytics.tests.moguls.test_mogul_pdf_analyser
+python3 -m unittest result_analytics.tests.moguls.test_mogul_pdf_analyser -v
 """
 
 
 class TestMogulPdfAnalyser(unittest.TestCase):
     def test_self_tree(self):
         tree = MogulPdfAnalyser().tree
-        self.assertTrue(set(tree.keys()) == {"M", "F"})
+        self.assertTrue(set(tree.keys()) == {"WC"})
 
     def test_analyse_pdf(self):
         analyser = MogulPdfAnalyser()
@@ -24,4 +24,4 @@ class TestMogulPdfAnalyser(unittest.TestCase):
 
     def test_analyse_specific_pdf(self):
         analyser = MogulPdfAnalyser()
-        analyser.analayse_pdf(["M", "2023", "AH", "Q", "2023FS8787RLQ.pdf"])
+        analyser.analayse_pdf(["WC", "M", "2023", "Alpe d'Huez (FRA)", "Q", "2023FS8787RLQ.pdf"])
