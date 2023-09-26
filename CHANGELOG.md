@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/tomjeannesson/result-analytics/compare/v1.3.0...v1.4.0) (2023-09-26)
+
+
+### Features
+
+* **scrapper:** fully integrated scrapper && analytics works on all files ([100a5db](https://github.com/tomjeannesson/result-analytics/commit/100a5db1de27b35ba0272dad449617dd3b99609d))
+* **scrapper:** implemented and tested ([5ebe5a3](https://github.com/tomjeannesson/result-analytics/commit/5ebe5a35f63dd4e743576a56caed080403d50746))
+
 # [1.3.0](https://github.com/tomjeannesson/result-analytics/compare/v1.2.0...v1.3.0) (2023-09-25)
 
 
