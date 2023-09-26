@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/tomjeannesson/result-analytics/compare/v1.2.0...v1.3.0) (2023-09-25)
+
+
+### Features
+
+* **analytics:** basic analytics setup & bug fixes to take into account ties ([372ce83](https://github.com/tomjeannesson/result-analytics/commit/372ce8330f61c2e20d0321f8121623db16f42efb))
+
 # [1.2.0](https://github.com/tomjeannesson/result-analytics/compare/v1.1.0...v1.2.0) (2023-09-22)
 
 
