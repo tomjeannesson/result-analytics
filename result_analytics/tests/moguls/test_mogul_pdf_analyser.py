@@ -24,4 +24,4 @@ class TestMogulPdfAnalyser(unittest.TestCase):
 
     def test_analyse_specific_pdf(self):
         analyser = MogulPdfAnalyser()
-        analyser.analayse_pdf(["WC", "M", "2023", "Alpe d'Huez (FRA)", "Q", "2023FS8787RLQ.pdf"])
+        analyser.analayse_pdf(["WC", "M", "2023", "Alpe d'Huez (FRA) - id: 8787", "Q", "2023FS8787RLQ.pdf"])

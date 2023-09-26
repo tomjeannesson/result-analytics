@@ -1,3 +1,7 @@
+class Q2UselessDataFromFirstRun(Exception):
+    pass
+
+
 class MogulAthleteResult:
     result = ""
     bib = ""
@@ -28,7 +32,7 @@ class MogulAthleteResult:
     ski_deduction_judge4 = "NaN"
     ski_deduction_judge5 = "NaN"
     ski_total = ""
-    ski_deduction_total = ""
+    ski_deduction_total = "0.0"
     ski_points = ""
     total_points = ""
     race_points = "NaN"
@@ -150,13 +154,13 @@ class MogulAthleteResult:
                 return self.strip(string, current_char + 1)
 
     def process_jump(self, string):
-        if string[:4] in ["10op", "14op"]:
+        if string[:4] in ["10op", "14op", "10oG"]:
             return self.strip(string, 4)
         if string[:3] in ["7op", "7oG", "bdF", "3oG", "DTS", "10o", "14o"]:
             return self.strip(string, 3)
-        if string[:2] in ["NJ", "bF", "bp", "bG", "bT", "7o", "IG", "3G", "lG", "bL", "3o", "3p", "fT"]:
+        if string[:2] in ["NJ", "bF", "bp", "bG", "bT", "7o", "IG", "3G", "lG", "bL", "3o", "3p", "fT", "fG"]:
             return self.strip(string, 2)
-        if string[:1] in ["K", "S", "l", "3"]:
+        if string[:1] in ["K", "S", "l", "3", "T"]:
             return self.strip(string, 1)
         error_msg = f"Error: Expected trick but got {string[:4]}."
         raise ValueError(error_msg)
@@ -171,6 +175,10 @@ class MogulAthleteResult:
                 case 3:
                     return 3
                 case 4:
+                    if "Q1" in "".join(splited):
+                        return 4.1
+                    if "Q2" in "".join(splited):
+                        return 4.2
                     return 4
         elif "B:" in splited[1]:
             if mode != "qualification":
@@ -182,9 +190,16 @@ class MogulAthleteResult:
 
     def analyse_string(self, string: str, mode: str):
         splited = string.split("\n")
-        pdf_type = self.pdf_type(splited, mode)
-        string = string.replace("\n", " ")
+        new_splited = []
+        for line in splited:
+            if "/" not in line:
+                new_splited.append(line)
+        pdf_type = self.pdf_type(new_splited, mode)
+        string = "\n".join(new_splited).replace("\n", " ")
         string = string.replace(" Q1:", "")
+        string = string.replace(" Q1", "")
+        string = string.replace(" Q2:", "")
+        string = string.replace(" Q2", "")
         string = string.replace("PH:", "")
         match pdf_type:
             case 3:
@@ -192,7 +207,7 @@ class MogulAthleteResult:
 
                 self.ski_judge1, string = self.skip_until(string=string, char=".", pos=1)
 
-            case 4:
+            case 4 | 4.1 | 4.2:
                 self.ski_deduction_judge1, string = self.skip_until(string=string, char=".", pos=1)
 
                 self.ski_judge1, string = self.skip_until(string=string, char=".", pos=1)
@@ -235,9 +250,11 @@ class MogulAthleteResult:
             raise ValueError(error_msg)
 
         self.country, string = self.strip(string, 3)
-
+        if self.country[0] in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            error_msg = "Error: Expected country but got " + self.country
+            raise Q2UselessDataFromFirstRun(error_msg)
         match pdf_type:
-            case 1 | 2 | 3 | 4:
+            case 1 | 2 | 3 | 4 | 4.1 | 4.2:
                 self.bottom_air_judge1, string = self.skip_until(string=string, char=".", pos=1)
 
                 self.bottom_air_judge2, string = self.skip_until(string=string, char=".", pos=1)
@@ -295,7 +312,6 @@ class MogulAthleteResult:
         else:
             self.bib = bib_and_id
             self.fis_id, string = self.skip_until(string=string, char=" ", pos=0)
-
         self.top_air_judge1, string = self.skip_until(string=string, char=".", pos=1)
 
         self.top_air_judge2, string = self.skip_until(string=string, char=".", pos=1)
@@ -305,6 +321,7 @@ class MogulAthleteResult:
         self.top_air_coefficient, string = self.skip_until(string=string, char=" ", pos=0)
 
         self.time, string = self.skip_until(string=string, char=".", pos=2)
+
         match pdf_type:
             case 3:
                 if len(string.split(".")) == 14:
@@ -312,6 +329,12 @@ class MogulAthleteResult:
             case 4:
                 if len(string.split(".")) == 13:
                     self.tie, string = self.skip_until(string=string, char=".", pos=1)
+            case 4.1 | 4.2:
+                if len(string.split(".")) == 14:
+                    self.tie, string = self.skip_until(string=string, char=".", pos=1)
+        match pdf_type:
+            case 4.1 | 4.2:
+                _, string = self.skip_until(string=string, char=".", pos=2)
         match pdf_type:
             case 1 | 3 | 5 | 6:
                 self.total_points, string = self.skip_until(string=string, char=".", pos=2)
@@ -326,7 +349,7 @@ class MogulAthleteResult:
                 self.race_points = self.race_points.replace("…", "")
 
         match pdf_type:
-            case 1 | 3 | 4:
+            case 1 | 3 | 4 | 4.1 | 4.2:
                 self.ski_deduction_judge2, string = self.skip_until(string=string, char=".", pos=1)
 
                 self.ski_deduction_judge3, string = self.skip_until(string=string, char=".", pos=1)
@@ -346,15 +369,16 @@ class MogulAthleteResult:
         self.ski_judge3, string = self.skip_until(string=string, char=".", pos=1)
 
         match pdf_type:
-            case 1 | 3 | 4:
+            case 1 | 3 | 4 | 4.1 | 4.2:
                 self.ski_judge4, string = self.skip_until(string=string, char=".", pos=1)
 
                 self.ski_judge5, string = self.skip_until(string=string, char=".", pos=1)
 
         self.ski_total, string = self.skip_until(string=string, char=".", pos=1)
         match pdf_type:
-            case 1 | 3 | 4:
-                self.ski_deduction_total, string = self.skip_until(string=string, char=".", pos=1)
+            case 1 | 3 | 4 | 4.1 | 4.2:
+                if len(string) != 0:  # perfect score, no deductions
+                    self.ski_deduction_total, string = self.skip_until(string=string, char=".", pos=1)
             case 5 | 6:
                 self.result, string = self.skip_until(string=string, char=" ", pos=0)
 

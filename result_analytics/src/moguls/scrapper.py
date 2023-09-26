@@ -42,6 +42,8 @@ class MogulScrapper(Scrapper):
                     ]
         all_downloads = set(all_downloads)
         for download in all_downloads:
+            download = list(download)
+            download[4] += f" - id: {download[-1].split('/')[-2]}"
             path = os.path.join(Path(__file__).parent.parent.parent, "data", *download[:-1], download[-1].split("L")[-1].split(".")[0])
             with contextlib.suppress(FileExistsError):
                 os.makedirs(path)

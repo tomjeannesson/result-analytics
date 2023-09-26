@@ -20,7 +20,7 @@ class TestPdfAnalyser(unittest.TestCase):
         for circuit_dict in tree.values():
             for genders_dict in circuit_dict.values():
                 for gender, year_dict in genders_dict.items():
-                    self.assertTrue(set(year_dict.keys()) == {"2023"}, f"Gender: {gender} missing years. ({list(year_dict.keys())})")
+                    self.assertTrue(set(year_dict.keys()) == {"2022", "2023"}, f"Gender: {gender} missing years. ({list(year_dict.keys())})")
 
     def test_all_pdf_in_tree(self):
         PdfAnalyser().pdf_tree()

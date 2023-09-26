@@ -29,3 +29,23 @@ class TestMogulScrapper(unittest.TestCase):
         )
 
         scrapper.download()
+        scrapper = MogulScrapper(
+            base_url="https://www.fis-ski.com/DB/freestyle-freeski/ski-cross/calendar-results.html",
+            url_kwargs={
+                "eventselection": "results",
+                "place": "",
+                "sectorcode": "FS",
+                "seasoncode": "2022",
+                "categorycode": "WC",
+                "disciplinecode": "MO",
+                "gendercode": "",
+                "racedate": "",
+                "racecodex": "",
+                "nationcode": "",
+                "seasonmonth": "X-2023",
+                "saveselection": "1",
+                "seasonselection": "#download-white",
+            },
+        )
+
+        scrapper.download()

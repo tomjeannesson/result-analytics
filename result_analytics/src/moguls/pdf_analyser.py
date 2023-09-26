@@ -1,10 +1,11 @@
+import contextlib
 import os
 from pathlib import Path
 
 import pandas as pd
 from PyPDF2 import PageObject, PdfReader
 
-from result_analytics.src.moguls.athlete_result import MogulAthleteResult
+from result_analytics.src.moguls.athlete_result import MogulAthleteResult, Q2UselessDataFromFirstRun
 from result_analytics.src.pdf_analyser import PdfAnalyser
 
 
@@ -59,8 +60,9 @@ class MogulPdfAnalyser(PdfAnalyser):
 
         for i in range(len(start_of_athlete_line) - 1):
             athlete_line = "\n".join(text.split("\n")[start_of_athlete_line[i] : start_of_athlete_line[i + 1]])
-            athlete = MogulAthleteResult(string=athlete_line, mode="qualification" if qualification else "final")
-            all_athletes[f"{athlete.last_name} {athlete.first_name}"] = athlete
+            with contextlib.suppress(Q2UselessDataFromFirstRun):
+                athlete = MogulAthleteResult(string=athlete_line, mode="qualification" if qualification else "final")
+                all_athletes[f"{athlete.last_name} {athlete.first_name}"] = athlete
         return all_athletes
 
     def pdf_to_dataframe(self, pdf_name: list) -> dict:

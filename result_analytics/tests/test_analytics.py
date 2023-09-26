@@ -8,7 +8,7 @@ class TestAnalytics(unittest.TestCase):
         analytics = Analytics(sport="MO")
         aggregated_df, all_df = analytics.aggregate(
             dimension="country",
-            filters=[["WC"], ["M"], ["2023"], ["Alpe d'Huez (FRA)"], ["F"]],
+            filters=[["WC"], ["M"], ["2023"], ["Alpe d'Huez (FRA) - id: 8159"], ["F"]],
             filter_mode="include",
         )
         self.assertTrue(len(all_df) == 1)
