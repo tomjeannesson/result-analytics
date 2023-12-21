@@ -14,7 +14,7 @@ setup(
     url="https://github.com/tomjeannesson/result-analytics",
     download_url="https://github.com/tomjeannesson/result-analytics/archive/refs/tags/{{VERSION}}.tar.gz",
     keywords=["Sport", "Ski", "Result", "Analytics", "Moguls"],
-    install_requires=["PyPDF2>=3.0.0", "pandas>=2.1.1", "requests>=2.31.0", "beautifulsoup4>=4.12.2"],
+    install_requires=["PyPDF2>=3.0.0", "pandas", "requests", "beautifulsoup4>=4.12.2"],
     classifiers=[
         "Development Status :: 4 - Beta",  # "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
         "Intended Audience :: Developers",
