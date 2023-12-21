@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name="result-analytics",
-    packages=find_packages(exclude=["test", "test.*"]),
+    packages=find_packages(exclude=["*.tests"]),
     version="{{VERSION}}",
     license="MIT",
     description="A simple project to extract data from PDFs and analyse them.",
