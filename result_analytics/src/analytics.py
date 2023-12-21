@@ -6,8 +6,8 @@ ANALYSERS = {"MO": MogulPdfAnalyser}
 
 
 class Analytics:
-    def __init__(self, sport: str) -> None:
-        self.analyser = ANALYSERS[sport]()
+    def __init__(self, sport: str, requested_path: Optional[str] = None) -> None:
+        self.analyser = ANALYSERS[sport](requested_path=requested_path)
 
     def aggregate(self, dimension: str, filters: Optional[list] = None, filter_mode: str = "exclude"):
         filters = filters or self.analyser.filters_shape

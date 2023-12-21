@@ -1,6 +1,7 @@
 import contextlib
 import os
 from pathlib import Path
+from typing import Optional
 
 import pandas as pd
 from PyPDF2 import PageObject, PdfReader
@@ -10,8 +11,8 @@ from result_analytics.src.pdf_analyser import PdfAnalyser
 
 
 class MogulPdfAnalyser(PdfAnalyser):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, requested_path: Optional[str] = None) -> None:
+        super().__init__(requested_path=requested_path)
         self.tree = self.tree["MO"]
         self.all_pdf = self.all_pdf_in_tree(self.tree)
         self.filters_shape = [None, None, None, None, None]
