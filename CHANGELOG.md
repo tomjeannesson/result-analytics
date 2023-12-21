@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/tomjeannesson/result-analytics/compare/v1.4.5...v1.4.6) (2023-12-21)
+
+
+### Bug Fixes
+
+* relative and absolute paths ([8790b68](https://github.com/tomjeannesson/result-analytics/commit/8790b68ce3d5333c05337d398521c4ba67476bab))
+
 ## [1.4.5](https://github.com/tomjeannesson/result-analytics/compare/v1.4.4...v1.4.5) (2023-12-21)
 
 
