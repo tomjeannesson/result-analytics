@@ -13,6 +13,7 @@ from result_analytics.src.pdf_analyser import PdfAnalyser
 class MogulPdfAnalyser(PdfAnalyser):
     def __init__(self, requested_path: Optional[str] = None) -> None:
         super().__init__(requested_path=requested_path)
+        self.requested_path = requested_path
         self.tree = self.tree["MO"]
         self.all_pdf = self.all_pdf_in_tree(self.tree)
         self.filters_shape = [None, None, None, None, None]
@@ -40,7 +41,7 @@ class MogulPdfAnalyser(PdfAnalyser):
         return tree
 
     def analayse_pdf(self, pdf_name: list) -> dict:
-        reader = PdfReader(os.path.join(Path(__file__).parent.parent.parent, "data", "MO", *pdf_name))
+        reader = PdfReader(self.requested_path or os.path.join(Path(__file__).parent.parent.parent, "data", "MO", *pdf_name))
         all_athletes = {}
         for page in reader.pages:
             all_athletes = {**all_athletes, **self.analyse_page(page, pdf_name)}
