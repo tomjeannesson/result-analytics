@@ -3,8 +3,8 @@ from typing import Optional
 
 
 class PdfAnalyser:
-    def __init__(self) -> None:
-        self.tree = self.pdf_tree()
+    def __init__(self, requested_path: Optional[str] = None) -> None:
+        self.tree = self.pdf_tree(requested_path=requested_path)
         self.all_pdf = self.all_pdf_in_tree(self.tree)
 
     def pdf_tree(self, requested_path: Optional[str] = None) -> dict:

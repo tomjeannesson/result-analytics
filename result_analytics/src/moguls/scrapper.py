@@ -10,7 +10,7 @@ from result_analytics.src.scrapping import Scrapper
 
 
 class MogulScrapper(Scrapper):
-    def download(self, requested_path: Optional[str] = None):
+    def download(self, requested_path: Optional[str] = None, quick: bool = False) -> None:
         calendar_page = requests.get(self.full_url, timeout=5)
         soup = BeautifulSoup(calendar_page.content, "html.parser")
         soup = soup.find(id="calendardata")
@@ -53,9 +53,12 @@ class MogulScrapper(Scrapper):
             )
             with contextlib.suppress(FileExistsError):
                 os.makedirs(path)
-            req = requests.get(download[-1], timeout=5)
-            with open(
-                os.path.join(path, download[-1].split("/")[-1]),
-                "wb",
-            ) as f:
-                f.write(req.content)
+
+            if not quick or os.listdir(path) == []:
+                os.listdir(path)
+                req = requests.get(download[-1], timeout=5)
+                with open(
+                    os.path.join(path, download[-1].split("/")[-1]),
+                    "wb",
+                ) as f:
+                    f.write(req.content)
