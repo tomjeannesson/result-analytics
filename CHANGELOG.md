@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/tomjeannesson/result-analytics/compare/v1.4.1...v1.4.2) (2023-12-21)
+
+
+### Bug Fixes
+
+* packaging for pypi ([ddec132](https://github.com/tomjeannesson/result-analytics/commit/ddec1324db7556c73afcfb686f3c59b81902fb92))
+
 ## [1.4.1](https://github.com/tomjeannesson/result-analytics/compare/v1.4.0...v1.4.1) (2023-12-21)
 
 
