@@ -69,4 +69,13 @@ class MogulPdfAnalyser(PdfAnalyser):
     def pdf_to_dataframe(self, pdf_name: list) -> dict:
         analysis = self.analayse_pdf(pdf_name)
         analysis = {athlete: analysis[athlete].to_dict() for athlete in analysis}
-        return pd.DataFrame.from_dict(analysis, orient="index").sort_values(by="result")
+        dataframe = pd.DataFrame.from_dict(analysis, orient="index").sort_values(by="result")
+        idx_table = {
+            "Q": None,
+            "F1": 16,
+            "F": 6,
+        }
+        truncate_idx = idx_table[pdf_name[-2]]
+        if truncate_idx is not None:
+            dataframe = dataframe.iloc[0:truncate_idx]
+        return dataframe

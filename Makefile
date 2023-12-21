@@ -8,3 +8,6 @@ coverage:
 
 coverage_open: coverage
 	open htmlcov/index.html
+
+download:
+	python3 -m unittest result_analytics.tests.moguls.test_mogul_scrapper -v
