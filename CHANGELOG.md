@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/tomjeannesson/result-analytics/compare/v1.4.2...v1.4.3) (2023-12-21)
+
+
+### Bug Fixes
+
+* removed tests from pypi package ([d978051](https://github.com/tomjeannesson/result-analytics/commit/d978051343bae001bf5379411d4e0db8d4c71588))
+
 ## [1.4.2](https://github.com/tomjeannesson/result-analytics/compare/v1.4.1...v1.4.2) (2023-12-21)
 
 
