@@ -46,5 +46,5 @@ jobs:
 
       - name: Publish package distributions to PyPI
         run: |
-          python3 -m pip install --upgrade twine
+          python3 -m pip install --upgrade twine 
           python3 -m twine upload dist/* --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}

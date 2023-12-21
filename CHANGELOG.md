@@ -1,3 +1,67 @@
+## [1.4.8](https://github.com/tomjeannesson/result-analytics/compare/v1.4.7...v1.4.8) (2023-12-21)
+
+
+### Bug Fixes
+
+* tmp ([f72a76c](https://github.com/tomjeannesson/result-analytics/commit/f72a76c5855fee79ceebd45bd2e8c52677c1451e))
+
+## [1.4.7](https://github.com/tomjeannesson/result-analytics/compare/v1.4.6...v1.4.7) (2023-12-21)
+
+
+### Bug Fixes
+
+* paths ([f4e0408](https://github.com/tomjeannesson/result-analytics/commit/f4e0408c43d5a9bb6248666ba214678b95bf3b62))
+
+## [1.4.6](https://github.com/tomjeannesson/result-analytics/compare/v1.4.5...v1.4.6) (2023-12-21)
+
+
+### Bug Fixes
+
+* relative and absolute paths ([8790b68](https://github.com/tomjeannesson/result-analytics/commit/8790b68ce3d5333c05337d398521c4ba67476bab))
+
+## [1.4.5](https://github.com/tomjeannesson/result-analytics/compare/v1.4.4...v1.4.5) (2023-12-21)
+
+
+### Bug Fixes
+
+* requirements ([c276914](https://github.com/tomjeannesson/result-analytics/commit/c27691464eaf6d9b88003a8d2a49e958508c874a))
+
+## [1.4.4](https://github.com/tomjeannesson/result-analytics/compare/v1.4.3...v1.4.4) (2023-12-21)
+
+
+### Bug Fixes
+
+* requirements ([652a882](https://github.com/tomjeannesson/result-analytics/commit/652a882fba4ed7299e161f1baeda431f0de0bcea))
+
+## [1.4.3](https://github.com/tomjeannesson/result-analytics/compare/v1.4.2...v1.4.3) (2023-12-21)
+
+
+### Bug Fixes
+
+* removed tests from pypi package ([d978051](https://github.com/tomjeannesson/result-analytics/commit/d978051343bae001bf5379411d4e0db8d4c71588))
+
+## [1.4.2](https://github.com/tomjeannesson/result-analytics/compare/v1.4.1...v1.4.2) (2023-12-21)
+
+
+### Bug Fixes
+
+* packaging for pypi ([ddec132](https://github.com/tomjeannesson/result-analytics/commit/ddec1324db7556c73afcfb686f3c59b81902fb92))
+
+## [1.4.1](https://github.com/tomjeannesson/result-analytics/compare/v1.4.0...v1.4.1) (2023-12-21)
+
+
+### Bug Fixes
+
+* **tmp:** tmp ([3b23979](https://github.com/tomjeannesson/result-analytics/commit/3b239790b09cd1ebf0f271b79cc53ecd69c8dab5))
+
+# [1.4.0](https://github.com/tomjeannesson/result-analytics/compare/v1.3.0...v1.4.0) (2023-09-26)
+
+
+### Features
+
+* **scrapper:** fully integrated scrapper && analytics works on all files ([100a5db](https://github.com/tomjeannesson/result-analytics/commit/100a5db1de27b35ba0272dad449617dd3b99609d))
+* **scrapper:** implemented and tested ([5ebe5a3](https://github.com/tomjeannesson/result-analytics/commit/5ebe5a35f63dd4e743576a56caed080403d50746))
+
 # [1.3.0](https://github.com/tomjeannesson/result-analytics/compare/v1.2.0...v1.3.0) (2023-09-25)
 
 

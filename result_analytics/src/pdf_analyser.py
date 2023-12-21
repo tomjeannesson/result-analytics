@@ -3,13 +3,13 @@ from typing import Optional
 
 
 class PdfAnalyser:
-    def __init__(self) -> None:
-        self.tree = self.pdf_tree()
+    def __init__(self, requested_path: Optional[str] = None) -> None:
+        self.tree = self.pdf_tree(requested_path=requested_path)
         self.all_pdf = self.all_pdf_in_tree(self.tree)
 
-    def pdf_tree(self) -> dict:
+    def pdf_tree(self, requested_path: Optional[str] = None) -> dict:
         tree = {}
-        root_data = os.path.join("result_analytics", "data")
+        root_data = requested_path or os.path.join("result_analytics", "data")
         for sport in os.listdir(root_data):
             tree[sport] = PdfAnalyser.pdf_tree_sport(root_data, sport)
         return tree
