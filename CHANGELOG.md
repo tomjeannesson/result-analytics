@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/tomjeannesson/result-analytics/compare/v1.4.8...v1.5.0) (2023-12-21)
+
+
+### Bug Fixes
+
+* **ci:** build ([fdae4a7](https://github.com/tomjeannesson/result-analytics/commit/fdae4a796f1390aeea7b78ab4c81f30ff1cdf09c))
+* paths ([13f804f](https://github.com/tomjeannesson/result-analytics/commit/13f804f3363c98f6a498bb28a308fc3e0273e0a7))
+
+
+### Features
+
+* **extract:** added feature to extract stats for an athlete ([ce1f8f2](https://github.com/tomjeannesson/result-analytics/commit/ce1f8f22015daa9ca744c2ff8efd10ab91ca4102))
+
 ## [1.4.8](https://github.com/tomjeannesson/result-analytics/compare/v1.4.7...v1.4.8) (2023-12-21)
 
 
