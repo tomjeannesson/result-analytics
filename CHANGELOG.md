@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/tomjeannesson/result-analytics/compare/v1.4.3...v1.4.4) (2023-12-21)
+
+
+### Bug Fixes
+
+* requirements ([652a882](https://github.com/tomjeannesson/result-analytics/commit/652a882fba4ed7299e161f1baeda431f0de0bcea))
+
 ## [1.4.3](https://github.com/tomjeannesson/result-analytics/compare/v1.4.2...v1.4.3) (2023-12-21)
 
 
