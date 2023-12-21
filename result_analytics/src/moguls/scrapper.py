@@ -1,6 +1,7 @@
 import contextlib
 import os
 from pathlib import Path
+from typing import Optional
 
 import requests
 from bs4 import BeautifulSoup
@@ -9,7 +10,7 @@ from result_analytics.src.scrapping import Scrapper
 
 
 class MogulScrapper(Scrapper):
-    def download(self):
+    def download(self, requested_path: Optional[str] = None):
         calendar_page = requests.get(self.full_url, timeout=5)
         soup = BeautifulSoup(calendar_page.content, "html.parser")
         soup = soup.find(id="calendardata")
@@ -44,7 +45,12 @@ class MogulScrapper(Scrapper):
         for download in all_downloads:
             download = list(download)
             download[4] += f" - id: {download[-1].split('/')[-2]}"
-            path = os.path.join(Path(__file__).parent.parent.parent, "data", *download[:-1], download[-1].split("L")[-1].split(".")[0])
+            path = os.path.join(
+                requested_path or Path(__file__).parent.parent.parent,
+                "data",
+                *download[:-1],
+                download[-1].split("L")[-1].split(".")[0],
+            )
             with contextlib.suppress(FileExistsError):
                 os.makedirs(path)
             req = requests.get(download[-1], timeout=5)

@@ -28,7 +28,7 @@ class TestMogulScrapper(unittest.TestCase):
             },
         )
 
-        scrapper.download()
+        scrapper.download(requested_path="./result_analytics/")
         scrapper = MogulScrapper(
             base_url="https://www.fis-ski.com/DB/freestyle-freeski/ski-cross/calendar-results.html",
             url_kwargs={
