@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name="result-analytics",
-    packages=find_packages(exclude=["test", "test.*"]),
+    packages=find_packages(exclude=["*.tests"]),
     version="{{VERSION}}",
     license="MIT",
     description="A simple project to extract data from PDFs and analyse them.",
@@ -14,9 +14,9 @@ setup(
     url="https://github.com/tomjeannesson/result-analytics",
     download_url="https://github.com/tomjeannesson/result-analytics/archive/refs/tags/{{VERSION}}.tar.gz",
     keywords=["Sport", "Ski", "Result", "Analytics", "Moguls"],
-    install_requires=["PyPDF2>=3.0.0", "pandas"],
+    install_requires=["PyPDF2>=3.0.0", "pandas", "requests", "beautifulsoup4>=4.12.2"],
     classifiers=[
-        "Development Status :: 4 - Beta",  # "3 - Alpha", "4 - Beta" or "5 - Production/Stable "
+        "Development Status :: 4 - Beta",  # "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Build Tools",
         "License :: OSI Approved :: MIT License",
