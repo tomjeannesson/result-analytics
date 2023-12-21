@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/tomjeannesson/result-analytics/compare/v1.5.0...v1.5.1) (2023-12-21)
+
+
+### Bug Fixes
+
+* rootdata ([742b237](https://github.com/tomjeannesson/result-analytics/commit/742b23720b54fd7f36720133e2b87ae8fc984d11))
+
 # [1.5.0](https://github.com/tomjeannesson/result-analytics/compare/v1.4.8...v1.5.0) (2023-12-21)
 
 
