@@ -41,7 +41,7 @@ class MogulPdfAnalyser(PdfAnalyser):
         return tree
 
     def analayse_pdf(self, pdf_name: list) -> dict:
-        reader = PdfReader(os.path.join(self.requested_path or Path(__file__).parent.parent.parent, "data", "MO", *pdf_name))
+        reader = PdfReader(os.path.join(self.requested_path or os.path.join(Path(__file__).parent.parent.parent, "data"), "MO", *pdf_name))
         all_athletes = {}
         for page in reader.pages:
             all_athletes = {**all_athletes, **self.analyse_page(page, pdf_name)}
