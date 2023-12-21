@@ -1,5 +1,5 @@
 PyPDF2==3.0.1
 pandas==2.1.4
-coverage==7.3.1
+coverage==7.3.4
 requests==2.31.0
 beautifulsoup4==4.12.2
