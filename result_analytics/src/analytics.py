@@ -13,6 +13,11 @@ class Analytics:
         self.analyser = ANALYSERS[sport](requested_path=requested_path)
 
     def aggregate(self, dimension: str, filters: Optional[list] = None, filter_mode: str = "exclude"):
+        """Filter should be a list of list of strings.
+
+        The first is the circuit, the second is the genre, the third is the year, the fourth is the place, the fifth is the run type.
+        Example: ["WC"], ["M"], ["2023"], ["Alpe d'Huez (FRA) - id: 8159"], ["F"]
+        """
         filters = filters or self.analyser.filters_shape
 
         if len(filters) != len(self.analyser.filters_shape):
