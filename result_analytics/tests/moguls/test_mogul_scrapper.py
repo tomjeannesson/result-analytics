@@ -48,4 +48,4 @@ class TestMogulScrapper(unittest.TestCase):
             },
         )
 
-        scrapper.download()
+        scrapper.download(quick=True)

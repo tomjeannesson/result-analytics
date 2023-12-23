@@ -10,7 +10,7 @@ python3 -m unittest result_analytics.tests.test_analytics -v
 
 class TestAnalytics(unittest.TestCase):
     def test_aggregate_include(self):
-        analytics = Analytics(sport="MO")
+        analytics = Analytics(sport="MO", requested_path="result_analytics/data/")
         aggregated_df, all_df = analytics.aggregate(
             dimension="country",
             filters=[["WC"], ["M"], ["2023"], ["Alpe d'Huez (FRA) - id: 8159"], ["F"]],
